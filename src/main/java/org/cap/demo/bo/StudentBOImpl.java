@@ -46,12 +46,12 @@ public class StudentBOImpl implements StudentBO {
 	
 	@Transactional
 	@Override
-	public List<StudentDTO> saveStudent(StudentDTO student) 
+	public StudentDTO saveStudent(StudentDTO student) 
 	{
 	
-		List<StudentVO> student2=studentDbDao.save(studentmapper.toStudentVO(student));
+		studentDbDao.save(studentmapper.toStudentVO(student));
 		logger.info("Save: student data getting saved in database in service layer");
-		return getAllStudents();
+		return student;
 	}
 	
 	@Transactional
