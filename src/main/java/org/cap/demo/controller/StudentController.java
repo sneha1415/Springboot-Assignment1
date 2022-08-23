@@ -46,7 +46,9 @@ public class StudentController {
 		return  ResponseEntity.ok(students);
 	} 
 	
-	//github demo2
+
+	// githubdemo2
+
 	@PostMapping("/students")
 	public ResponseEntity <StudentVO> saveStudent(@Validated @RequestBody StudentVO student){
 		
