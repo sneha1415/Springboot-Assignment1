@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/app1")
 public class StudentController {
 
 	@Autowired
@@ -36,14 +36,16 @@ public class StudentController {
 	
 	@GetMapping("/students")
 	public ResponseEntity<List<StudentVO>> getAllStudents(){
+		
+		
 		List<StudentVO> students=studentmapper.toStudentVOs(studentDbService.getAllStudents());
+		
+		
 		if(students==null || students.isEmpty())
 			return new ResponseEntity("Sorry! No student available in DB!", 
 					HttpStatus.NOT_FOUND);
-			//throw new StudentNotFound("No student Available");
 		 logger.info("GetMapping: Data is retriving from database ");		
-	
-		return  ResponseEntity.ok(students);
+		return ResponseEntity.status(HttpStatus.OK).body(students);
 	} 
 	
 
@@ -57,7 +59,7 @@ public class StudentController {
 		if(students==null)
 			return new ResponseEntity("student Details INsertion Error!", 
 					HttpStatus.BAD_REQUEST);
-		 logger.info("PostMapping: Data is saving in database ");
+		 logger.info("save Student in controller");
 		return  ResponseEntity.status(HttpStatus.OK).body(student);
 	}
 	
@@ -79,7 +81,6 @@ public class StudentController {
 	
 	 @RequestMapping("/log") public String log()
 	    {
-	        // Logging various log level messages
 	        logger.trace("Log level: TRACE");
 	        logger.debug("Log level: DEBUG");
 	        logger.error("Log level: ERROR");
@@ -87,4 +88,8 @@ public class StudentController {
 	  
 	        return "Hey! You can check the output in the logs";
 	    }
+	 @GetMapping("/message")
+		public String testMassage() {
+			return "message from application 1--------";
+		}
 }

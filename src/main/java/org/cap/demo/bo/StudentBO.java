@@ -13,7 +13,7 @@ public interface StudentBO
 {
 	 public List<StudentDTO> getAllStudents();
 
-	List<StudentDTO> saveStudent(StudentDTO student);
+	StudentDTO saveStudent(StudentDTO student);
 
 	HealthcheckEndpoint healthcheck();
 
